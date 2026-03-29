@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akash Lendkar | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary: #0A192F;    /* Navy Blue */
+            --secondary: #64ffda;  /* Cyan Accent */
+            --text-light: #ccd6f6;
+            --text-dim: #8892b0;
+            --bg-card: #112240;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            border: 2px solid var(--secondary);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10%;
+            gap: 50px;
+        }
+
+        .hero-text {
+            flex: 1;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero-text h3 {
+            color: var(--secondary);
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 10px;
+        }
+
+        .hero-text h2 {
+            font-size: 3rem;
+            color: var(--text-dim);
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            color: var(--text-dim);
+            max-width: 500px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: rgba(100, 255, 218, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .hero-img-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            animation: fadeInUp 1.5s ease forwards;
+        }
+
+        /* IMAGE STYLING */
+        .hero-img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 50%; /* Circle shape */
+            border: 4px solid var(--secondary);
+            box-shadow: 0 0 30px rgba(100, 255, 218, 0.3);
+            animation: float 6s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        /* --- SECTIONS COMMON --- */
+        section {
+            padding: 100px 10%;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            color: var(--white);
+            margin-right: 20px;
+        }
+
+        .section-header .line {
+            height: 1px;
+            background: #233554;
+            flex-grow: 1;
+            max-width: 300px;
+        }
+
+        /* --- SKILLS & EXPERIENCE --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            padding: 25px;
+            border-radius: 8px;
+            transition: transform 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        .card h3 {
+            color: var(--white);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .card p, .card li {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .card ul li::before {
+            content: "▹";
+            color: var(--secondary);
+            margin-right: 8px;
+        }
+
+        /* --- CONTACT FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 50px;
+            background: #020c1b;
+        }
+
+        .social-icons {
+            margin-bottom: 20px;
+        }
+
+        .social-icons a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--secondary);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                height: auto;
+                padding-top: 120px;
+            }
+            .hero-text h1 { font-size: 3rem; }
+            .hero-text h2 { font-size: 2rem; }
+            .nav-links { display: none; } /* Simplified for mobile */
+            .section-header { justify-content: center; }
+            .section-header .line { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">AL</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h3>Hi, my name is</h3>
+            <h1>Akash Lendkar.</h1>
+            <h2>I build secure things for the web.</h2>
+            <p>
+               Cybersecurity student and developer based in Pune. I craft secure, high-performance applications by blending core programming in Python , HTML CSS & C++ with creative front-end design.
+            </p>
+            <a href="#contact" class="btn">Get In Touch</a>
+        </div>
+        
+        <div class="hero-img-container">
+            <img src="akash.png" alt="Akash Lendkar" class="hero-img">
+        </div>
+    </section>
+
+    <section id="about" class="reveal">
+        <div class="section-header">
+            <h2>01. Education</h2>
+            <div class="line"></div>
+        </div>
+        <div class="grid-container">
+            <div class="card">
+                <h3><i class="fas fa-graduation-cap" style="color: var(--secondary);"></i> BCA in Cybersecurity</h3>
+                <p><strong>Ajeenkya DY Patil University, Pune</strong></p>
+                <p>Currently Studying</p>
+                <br>
+                <ul>
+                    <li>Focus on Cybersecurity </li>
+                    <li>Secure Coding Practices</li>
+                    <li>Web Technologies</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="reveal">
+        <div class="section-header">
+            <h2>02. Technical Skills</h2>
+            <div class="line"></div>
+        </div>
+        <div class="grid-container">
+            <div class="card">
+                <h3><i class="fas fa-code"></i> Languages</h3>
+                <ul>
+                    <li>Python</li>
+                    <li>C++</li>
+                    <li>HTML5 / CSS</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-shield-alt"></i> Cybersecurity</h3>
+                <ul>
+                    <li>Ethical Hacking Basics</li>
+                    <li>Network Security</li>
+                    <li>Secure Web Dev</li>
+                </ul>
+            </div>
+            <!-- <div class="card">
+                <h3><i class="fas fa-tools"></i> Tools</h3>
+                <ul>
+                    <li>Git / GitHub</li>
+                    <li>VS Code</li>
+                    <li>Responsive UI Design</li>
+                </ul>
+            </div> -->
+        </div>
+    </section>
+
+    <section id="experience" class="reveal">
+        <div class="section-header">
+            <h2>03. Experience</h2>
+            <div class="line"></div>
+        </div>
+        <div class="card">
+            <h3>Content Support & Digital Handling</h3>
+            <p style="color: var(--secondary);">Freelance / Remote</p>
+            <br>
+            <ul>
+                <li>Collaborated with multiple YouTubers to manage and optimize digital content.</li>
+                <li>Handled video metadata, descriptions, and audience engagement strategies.</li>
+                <li>Assisted with technical setups and digital asset organization.</li>
+                <li>Collage Projects </li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="projects" class="reveal">
+        <div class="section-header">
+            <h2>04. Projects</h2>
+            <div class="line"></div>
+        </div>
+        <div class="card">
+            <h3><i class="fas fa-laptop-code"></i> Personal Portfolio Website</h3>
+            <ul>
+                <li>Designed and developed a fully responsive personal portfolio using HTML and CSS.</li>
+                <li>Focused on a minimal, tech-themed UI with clean typography.</li>
+                <li>Optimized for fast loading speeds and cross-browser compatibility.</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h2 style="color: white; margin-bottom: 20px;">Get In Touch</h2>
+        <p style="max-width: 600px; margin: 0 auto 30px auto; color: var(--text-dim);">
+            I am currently looking for internships and new opportunities. Whether you have a question or just want to say hi, my inbox is open!
+        </p>
+        
+        <div class="social-icons">
+            <a href="https://instagram.com/Akash.lendkar" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="mailto:akashlendkar74@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+
+        <a href="mailto:akashlendkar74@gmail.com" class="btn">Say Hello</a>
+        
+        <p style="margin-top: 50px; font-size: 12px; color: #555;">Designed & Built by Akash Lendkar</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', reveal);
+
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowheight = window.innerHeight;
+                var revealtop = reveals[i].getBoundingClientRect().top;
+                var revealpoint = 150;
+
+                if (revealtop < windowheight - revealpoint) {
+                    reveals[i].classList.add('active');
+                } else {
+                    reveals[i].classList.remove('active');
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
